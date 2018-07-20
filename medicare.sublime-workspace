@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"Pate",
+				"PatientsList"
+			],
+			[
+				"Patie",
+				"PatientsList"
+			],
+			[
+				"_get",
+				"_getProfile"
+			],
+			[
+				"get",
+				"getPatients"
+			],
+			[
+				"gl",
+				"globalVariables"
+			],
+			[
+				"g",
+				"globalVariables"
+			],
+			[
+				"te",
+				"templateCache"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
 				"fil",
 				"fileName"
 			],
@@ -444,10 +476,6 @@
 				"siftDown"
 			],
 			[
-				"get",
-				"getRightChild"
-			],
-			[
 				"sift",
 				"siftUp"
 			],
@@ -486,39 +514,19 @@
 			[
 				"AVL",
 				"AVLNode"
-			],
-			[
-				"bubbl",
-				"bubbleSort"
-			],
-			[
-				"out",
-				"output"
-			],
-			[
-				"b",
-				"bordare"
-			],
-			[
-				"fou",
-				"foutName"
-			],
-			[
-				"fin",
-				"finName"
-			],
-			[
-				"BST",
-				"BSTNode"
-			],
-			[
-				"list",
-				"listPushBack"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 227,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -647,7 +655,26 @@
 	],
 	"file_history":
 	[
+		"/home/vali/Documents/MYPROJ/Medicare/README.md",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/app.js",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/modules/diagnose.js",
+		"/home/vali/Documents/MYPROJ/Medicare/index.html",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/default.js",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/modules/glbVar.js",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/modules/profile.js",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/modules/patients.js",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/templates/profile.html",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/templates/patients.html",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/modules/patients",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/data/patients.json",
+		"/home/vali/Documents/Radcom/projectxweb/Gruntfile.js",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/modules/patients.json",
+		"/home/vali/Documents/MYPROJ/MCOC-arena-and-kill/data.json",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/js/glbVar.js",
+		"/home/vali/Documents/MYPROJ/Medicare (copy)/medicare/tables.html",
 		"/home/vali/Documents/MYPROJ/Medicare/assets/css/now-ui-dashboard.css",
+		"/home/vali/Documents/MYPROJ/Medicare/assets/templates/diagnose.html",
+		"/home/vali/Documents/MYPROJ/Medicare (copy)/medicare/dashboard.html",
 		"/home/vali/Documents/MYPROJ/Medicare/assets/css/now-ui-dashboard.min.css",
 		"/home/vali/Documents/MYPROJ/Medicare/assets/js/now-ui-dashboard.min.js",
 		"/home/vali/Documents/MYPROJ/Medicare/assets/js/core/bootstrap.min.js",
@@ -663,7 +690,6 @@
 		"/home/vali/Documents/MYPROJ/Medicare/gulpfile.js",
 		"/home/vali/Documents/MYPROJ/Medicare/package.json",
 		"/home/vali/Documents/MYPROJ/Medicare/package-lock.json",
-		"/home/vali/Documents/MYPROJ/Medicare/README.md",
 		"/home/vali/Downloads/angular.min.js",
 		"/home/vali/Documents/Radcom/projectxweb/app/scripts/orders/orders2.component.js",
 		"/home/vali/Documents/Radcom/projectxweb/app/styles/postis.css",
@@ -747,7 +773,6 @@
 		"/home/vali/Documents/Radcom/projectxweb/app/scripts/catalog/catalog.template.html",
 		"/home/vali/Documents/Radcom/projectxweb/app/scripts/catalog/catalog.component.js",
 		"/home/vali/Documents/Radcom/projectxweb/app/scripts/product-details/product-details.standard-conditions.template.html",
-		"/home/vali/Documents/Radcom/projectxweb/Gruntfile.js",
 		"/home/vali/Documents/Radcom/projectxweb/app/scripts/login/login.component.js",
 		"/home/vali/Downloads/bootstrap-3.3.7-dist/css/bootstrap.css",
 		"/home/vali/Documents/Radcom/projectxweb/dist/main.min.css",
@@ -757,24 +782,7 @@
 		"/home/vali/Documents/Radcom/projectxweb/package-lock.json",
 		"/home/vali/Documents/Radcom/projectxweb/package.json",
 		"/home/vali/Documents/Radcom/projectxweb/bower.json",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/order-details2/order-details2.addresses.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/order-details/order-details.addresses.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/locations/locations.template.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/clusters/clusters.template.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/zones/zones.template.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/partners/partners.template.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/dashboard/showPrTpl.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/dashboard/showCountiesTpl.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/dashboard/showCountiesSrTpl.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/dashboard/showCitiesTpl.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/styles/bootstrap.min.css",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/dashboard/dashboard.service.js",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/dashboard/dashboard.component.js",
-		"/home/vali/Documents/Radcom/projectxweb/app/js/ui-bootstrap-tpls.min.js",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/order-details2/order-details2.status.html",
-		"/home/vali/Documents/Radcom/projectxweb/app/styles/select2.min.css",
-		"/home/vali/Documents/Radcom/projectxweb/app/styles/app.css",
-		"/home/vali/Documents/Radcom/projectxweb/app/scripts/statuses/statuses.component.js"
+		"/home/vali/Documents/Radcom/projectxweb/app/scripts/order-details2/order-details2.addresses.html"
 	],
 	"find":
 	{
@@ -792,6 +800,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"'",
+			"html",
+			"{\n",
+			"index",
+			"'",
+			"\t      \"",
+			"'",
+			"'age': '',",
+			">  ",
+			"main-panel"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -799,6 +817,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"\"",
+			"\t    \"",
+			"\"",
+			"'age': ,",
+			"'age: ,"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -809,8 +832,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								84
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

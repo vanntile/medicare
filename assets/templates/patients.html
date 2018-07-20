@@ -1,13 +1,23 @@
-<div class="panel-header panel-header-sm">
+<div class="panel-header panel-header-md">
 </div>
-<div class="content">
+<div class="content container">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Patient Table</h4>
+          <h2 class="card-title">Patient Table</h2>
         </div>
         <div class="card-body">
+          <form>
+            <div class="input-group no-border">
+              <input type="text" value="" class="form-control" placeholder="Search patient..." ng-model="search">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <i class="now-ui-icons ui-1_zoom-bold"></i>
+                </div>
+              </div>
+            </div>
+          </form>
           <div class="table-responsive">
             <table class="table">
               <thead class=" text-primary">
@@ -17,11 +27,11 @@
                 <th>Age</th>
               </thead>
               <tbody>
-                <tr ng-repeat="patient in $ctrl.PatientsList" ng-click="$ctrl.getProfile($index)">
-                  <td>{{patient.firstname}} {{patient.lastname}}</td>
-                  <td>{{patient.country}}</td>
-                  <td>{{patient.city}}</td>
-                  <td>{{patient.age}}</td>
+                <tr ng-repeat="patient in $ctrl.PatientsList | filter:search" ng-click="$ctrl.getProfile($index)">
+                  <td data-th="Name">{{patient.firstname}} {{patient.lastname}}</td>
+                  <td data-th="Country">{{patient.country}}</td>
+                  <td data-th="City">{{patient.city}}</td>
+                  <td data-th="Age">{{patient.age}}</td>
                 </tr>
               </tbody>
             </table>

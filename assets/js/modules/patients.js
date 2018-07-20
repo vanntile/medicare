@@ -8,13 +8,17 @@ function PatientsController($scope, $log, $state, $location, globalVariables) {
     var self = this;
     self.PatientsList = undefined;
 
-    globalVariables.getPatients().then(function(response) {
-        // request was successful
-        self.PatientsList = response.data.patients;
-        globalVariables.setPatients(self.PatientsList);
-    }, function() {
-        $log.error("Could not load patients list");
-    });
+    if (globalVariables.loaded() == 0) {
+        globalVariables.getPatientsRequest().then(function(response) {
+            // request was successful
+            self.PatientsList = response.data.patients;
+            globalVariables.setPatients(self.PatientsList);
+        }, function() {
+            $log.error("Could not load patients list");
+        });
+    } else {
+        self.PatientsList = globalVariables.getPatients();
+    }
 
     self.getProfile = function(index) {
         globalVariables.setProfileIndex(index);

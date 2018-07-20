@@ -2620,12 +2620,36 @@ Created using IcoMoon - icomoon.io
     width: 100%; }
 
 .table-responsive {
-  overflow: scroll;
-  padding-bottom: 10px; }
-
-#tables .table-responsive {
+  padding-bottom: 10px;
   margin-bottom: 30px; }
 
+@media (max-width: 575px) {
+  .table-responsive .table thead{
+    display: none;
+  }
+  .table-responsive .table tr {
+    display: block;
+    padding-bottom: 10px;
+    border-top: 1px solid #dee2e6;
+  }
+  .table-responsive .table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 10px;
+    text-transform: uppercase;
+    color: #f96332;
+    display: block;
+    min-width: 120px;
+  }
+  .table-responsive .table td {
+    display: block;
+    border: none;
+    padding: 9px 4px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
 .wrapper {
   position: relative;
   top: 0;
@@ -2898,15 +2922,14 @@ Created using IcoMoon - icomoon.io
 .main-panel {
   position: relative;
   float: right;
-  width: calc(100% - 260px);
+  width: 100%;
   background-color: #E3E3E3;
   background-color: #ebecf1;
   -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
   transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1); }
   .main-panel .content {
-    padding: 0 30px 30px;
     min-height: calc(100vh - 123px);
-    margin-top: -30px; }
+    margin-top: -115px; }
   .main-panel .navbar {
     margin-bottom: 0; }
   .main-panel .header {
@@ -3194,9 +3217,6 @@ Created using IcoMoon - icomoon.io
           box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); }
   .card .card-body {
     padding: 15px 15px 10px 15px; }
-    .card .card-body.table-full-width {
-      padding-left: 0;
-      padding-right: 0; }
   .card .card-header {
     padding: 15px 15px 0;
     border: 0; }

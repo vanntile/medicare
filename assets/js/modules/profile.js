@@ -15,4 +15,8 @@ function ProfileController($scope, $log, $state, $location, globalVariables) {
   	self.diagnose = function() {
   		$location.path("/diagnose/" + globalVariables.getProfileIndex());
   	}
+
+    self.savePatientData = function() {
+        globalVariables.setProfile(self.patientProfile);
+    }
 }

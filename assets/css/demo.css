@@ -61,3 +61,9 @@
   max-width: 530px;
   margin: 0 auto;
 }
+
+@media all and (max-width: 991px) {
+  .container {
+    max-width: 100%;
+  }
+}

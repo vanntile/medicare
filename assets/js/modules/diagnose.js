@@ -10,9 +10,7 @@ function DiagnoseController($scope, $log, $state, $location, globalVariables) {
 
   	if (self.patientProfile == null) {
   		$location.path("/patients");
-  	}
-
-    $(document).ready(function() {
-    	demo.initDashboardPageCharts();
-    });
+  	} else {
+      demo.initDashboardPageCharts();
+    };
 }
