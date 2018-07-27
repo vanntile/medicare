@@ -14,9 +14,26 @@ function ProfileController($scope, $log, $state, $location, globalVariables) {
 
   	self.diagnose = function() {
   		$location.path("/diagnose/" + globalVariables.getProfileIndex());
-  	}
+  	};
 
     self.savePatientData = function() {
         globalVariables.setProfile(self.patientProfile);
-    }
+
+        $.notify({
+          icon: "now-ui-icons ui-1_check",
+          message: "<b>" + self.patientProfile.firstname + " " + self.patientProfile.lastname + "</b>'s data has been saved."
+
+        }, {
+          type: 'success',
+          timer: 2000,
+          placement: {
+            from: 'top',
+            align: 'center'
+          }
+        });
+    };
+
+    self.goBack = function() {
+        $location.path("/patients");
+    };
 }
