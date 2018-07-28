@@ -1199,6 +1199,9 @@ body {
   font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 .main {
   position: relative;
@@ -1592,11 +1595,6 @@ body {
   padding: 0 15px;
   width: 100%;
   max-width: 880px;
-}
-.page-header footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 .page-header .container {
   height: 100%;
@@ -2783,6 +2781,7 @@ Created using IcoMoon - icomoon.io
   position: relative;
   float: right;
   width: 100%;
+  height: 100%;
   background-color: #E3E3E3;
   background-color: #ebecf1;
   -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -2791,6 +2790,7 @@ Created using IcoMoon - icomoon.io
 .main-panel .content {
   min-height: calc(100vh - 123px);
   margin-top: -115px;
+  margin-bottom: 120px;
 }
 .main-panel .navbar {
   margin-bottom: 0;
@@ -2839,33 +2839,11 @@ Created using IcoMoon - icomoon.io
   height: 380px;
 }
 .footer {
+  position: relative;
+  margin-top: -70px;
   padding: 24px 0;
-}
-.footer.footer-default {
-  background-color: #f2f2f2;
-}
-.footer nav {
-  display: inline-block;
-  float: left;
-  padding-left: 7px;
-}
-.footer ul {
-  margin-bottom: 0;
-  padding: 0;
-  list-style: none;
-}
-.footer ul li {
-  display: inline-block;
-}
-.footer ul li a {
-  color: inherit;
-  padding: 0.5rem;
-  font-size: 0.8571em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.footer ul li a:hover {
-  text-decoration: none;
+  color: #FFF;
+  mix-blend-mode: difference;
 }
 .footer .copyright {
   font-size: 0.8571em;

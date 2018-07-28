@@ -71,4 +71,13 @@ function LoginController($scope, $log, $http, $location, glbVar) {
             });
         });
     };
+    
+    $(document).ready(function() {
+        $log.debug("ready");
+        $('.form-control').on("focus", function() {
+            $(this).parent('.input-group').addClass("input-group-focus");
+        }).on("blur", function() {
+            $(this).parent(".input-group").removeClass("input-group-focus");
+        });
+    });
 }
