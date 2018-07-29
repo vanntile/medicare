@@ -25,7 +25,7 @@ function ProfileController($scope, $log, $state, $location, globalVariables) {
 
         }, {
           type: 'success',
-          timer: 2000,
+          delay: 1000,
           placement: {
             from: 'top',
             align: 'center'

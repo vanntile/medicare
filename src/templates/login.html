@@ -22,7 +22,7 @@
                     <i class="now-ui-icons text_caps-small"></i>
                   </div>
                 </div>
-                <input class="form-control" placeholder="Password..." type="password" ng-model="password">
+                <input class="form-control" placeholder="Password..." type="password" ng-model="password" ng-keyup="$event.keyCode == 13 && $ctrl.login(username, password)">
               </div>
             </div>
             <div class="card-footer">

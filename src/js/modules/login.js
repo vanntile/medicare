@@ -8,9 +8,13 @@ function LoginController($scope, $log, $http, $location, glbVar) {
     var self = this;
 
     self.login = function(username, password) {
-        this.placement = {
-            from: "top",
-            align: "center"
+        this.notifyOpt = {
+            type: "danger",
+            delay: 1000,
+            placement: {
+                from: "top",
+                align: "center"
+            }
         };
 
         $http.get("assets/data/users.json").then(response => {
@@ -32,21 +36,13 @@ function LoginController($scope, $log, $http, $location, glbVar) {
                                 $.notify({
                                     icon: "now-ui-icons users_circle-08",
                                     message: "Could not load patients list"
-                                }, {
-                                    type: "danger",
-                                    timer: 2000,
-                                    placement: this.placement
-                                });
+                                }, this.notifyOpt);
                             });
                         } else {
                             $.notify({
                                 icon: "now-ui-icons ui-1_simple-remove",
                                 message: "Wrong password"
-                            }, {
-                                type: "danger",
-                                timer: 2000,
-                                placement: this.placement
-                            });
+                            }, this.notifyOpt);
                         }
                     });
                 });
@@ -54,21 +50,13 @@ function LoginController($scope, $log, $http, $location, glbVar) {
                 $.notify({
                     icon: "now-ui-icons users_circle-08",
                     message: "Could not find user"
-                }, {
-                    type: "danger",
-                    timer: 2000,
-                    placement: this.placement
-                });
+                }, this.notifyOpt);
             }
         }, () => {
             $.notify({
                 icon: "now-ui-icons arrows-1_cloud-download-93",
                 message: "Could not contact server"
-            }, {
-                type: "warning",
-                timer: 2000,
-                placement: this.placement
-            });
+            }, this.notifyOpt);
         });
     };
     
