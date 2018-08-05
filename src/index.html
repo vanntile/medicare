@@ -65,7 +65,7 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" ng-bind="username"></a>
-                <a class="dropdown-item" ng-bind="patientNumber"></a>
+                <a class="dropdown-item" ng-bind="patientNumber" href="#!/patients"></a>
                 <a class="dropdown-item" ng-click="logout()">Logout</a>
               </div>
             </li>
@@ -88,6 +88,8 @@
       </div>
     </footer>
   </div>
+
+  <script async src="js/plugins/chartjs.min.js"></script>
 </body>
 
 </html>

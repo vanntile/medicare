@@ -55,4 +55,9 @@
 	text-decoration: none;
 }
 
-
+.diagnose-container {
+	min-height: 100vh;
+}
+.diagnose-panel {
+	height: 600px;
+}

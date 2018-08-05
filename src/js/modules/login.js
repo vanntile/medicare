@@ -17,34 +17,40 @@ function LoginController($scope, $log, $http, $location, glbVar) {
             }
         };
 
+        if (username === "" || username === undefined) {
+            $.notify({
+                icon: "now-ui-icons ui-1_simple-remove",
+                message: "Please fill in the credentials"
+            }, this.notifyOpt);
+            return;
+        }
+
         $http.get("data/users.json").then(response => {
             let user = response.data.users.find(user => !user.username.localeCompare(username));
 
             if (user !== undefined) {
-                glbVar.hash('SHA-256', password).then(hashed => {
-                    glbVar.hash('SHA-256', user.password).then(newhash => {
-                        if (glbVar.hex(hashed).localeCompare(glbVar.hex(newhash)) === 0) {
-                            glbVar.setAuthenticated(true);
-                            glbVar.setUser(user);
-                            glbVar.getPatientsRequest().then(res => {
-                                // request was successful
-                                let PatientsList = res.data.data.find(list => list.key === user.key);
-                                glbVar.setPatients(PatientsList.patients);
+                Promise.all([glbVar.hash('SHA-256', password), glbVar.hash('SHA-256', user.password)]).then((p) => {
+                    if (glbVar.hex(p[0]).localeCompare(glbVar.hex(p[1])) === 0) {
+                        glbVar.setAuthenticated(true);
+                        glbVar.setUser(user);
+                        glbVar.getPatientsRequest().then(res => {
+                            // request was successful
+                            let PatientsList = res.data.data.find(list => list.key === user.key);
+                            glbVar.setPatients(PatientsList.patients);
 
-                                $location.path("/patients");
-                            }, () => {
-                                $.notify({
-                                    icon: "now-ui-icons users_circle-08",
-                                    message: "Could not load patients list"
-                                }, this.notifyOpt);
-                            });
-                        } else {
+                            $location.path("/patients");
+                        }, () => {
                             $.notify({
-                                icon: "now-ui-icons ui-1_simple-remove",
-                                message: "Wrong password"
+                                icon: "now-ui-icons users_circle-08",
+                                message: "Could not load patients list"
                             }, this.notifyOpt);
-                        }
-                    });
+                        });
+                    } else {
+                        $.notify({
+                            icon: "now-ui-icons ui-1_simple-remove",
+                            message: "Wrong password"
+                        }, this.notifyOpt);
+                    }
                 });
             } else {
                 $.notify({
