@@ -1,6 +1,6 @@
 angular.module("login", ["glbVar"])
     .component("login", {
-        templateUrl: "assets/templates/login.html",
+        templateUrl: "templates/login.html",
         controller: ["$scope", "$log", "$http", "$location", "globalVariables", LoginController]
     });
 
@@ -17,7 +17,7 @@ function LoginController($scope, $log, $http, $location, glbVar) {
             }
         };
 
-        $http.get("assets/data/users.json").then(response => {
+        $http.get("data/users.json").then(response => {
             let user = response.data.users.find(user => !user.username.localeCompare(username));
 
             if (user !== undefined) {
@@ -61,7 +61,6 @@ function LoginController($scope, $log, $http, $location, glbVar) {
     };
     
     $(document).ready(function() {
-        $log.debug("ready");
         $('.form-control').on("focus", function() {
             $(this).parent('.input-group').addClass("input-group-focus");
         }).on("blur", function() {

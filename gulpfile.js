@@ -1,62 +1,119 @@
 // Gulp.js configuration
 var gulp = require('gulp'),
 	del = require('del'),
-	newer = require('gulp-newer'),
-	purify = require('gulp-purifycss'),
-	cleanCSS = require('gulp-clean-css'),
-	//sourcemaps = require('gulp-sourcemaps'),
-	imagemin = require('gulp-imagemin'),
-	htmlclean = require('gulp-htmlclean'),
+	copy = require('gulp-copy')
 	concat = require('gulp-concat'),
-	deporder = require('gulp-deporder'),
-	stripdebug = require('gulp-strip-debug'),
-	uglify = require('gulp-uglify'),
+	newer = require('gulp-newer'),
+	connect = require('gulp-connect'),
 
-	folder = {
-		src: 'src/',
-		build: 'build/'
-	};
+	purify = require('gulp-purifycss'),
+	imagemin = require('gulp-imagemin'),
+	minify = require('gulp-minify'),
+
+	htmlmin = require('gulp-htmlmin'),
+	htmlreplace = require('gulp-html-replace');
 
 gulp.task('images', function() {
-  	var out = folder.build + 'img/';
-  	return gulp.src(folder.src + 'img/**/*')
-	    .pipe(newer(out))
-	    .pipe(imagemin({ optimizationLevel: 5 }))
-	    .pipe(gulp.dest(out));
+	var out = 'build/img/';
+	return gulp.src('src/img/**/*')
+    .pipe(newer(out))
+    .pipe(imagemin({ optimizationLevel: 5 }))
+    .pipe(gulp.dest(out));
 });
 
-gulp.task('html-templates', function() {
-	var out = folder.build + 'templates/';
-    return gulp.src(folder.src + 'templates/*')
-      	.pipe(newer(out))
-		.pipe(htmlclean())
-		.pipe(gulp.dest(out));
+gulp.task('css-purify', () => {
+	var out = 'build/css/';
+	return gulp.src('src/css/*.css')
+    .pipe(newer(out))
+    .pipe(purify([
+    	'src/js/modules/*.js',
+    	'src/js/plugins/*.js',
+    	'src/templates/*.html',
+    	'src/index.html'
+    ], {
+		minify: true,
+		rejected: false,
+		info: true,
+		whitelist: ['bg-white']
+	}))
+  .pipe(gulp.dest(out));
 });
 
-gulp.task('js', function() {
-	return gulp.src(folder.src + 'js/**/*')
-    	.pipe(deporder())
-    	.pipe(concat('main.js'))
-		.pipe(stripdebug())
-      	.pipe(uglify())
-      	.pipe(gulp.dest(folder.build + 'js/'));
+gulp.task('css', gulp.series('css-purify', (done) => {
+	var files = ['build/css/now-ui-dashboard.css', 'build/css/default.css'],
+		out = 'build/css/';
+
+	gulp.src(files)
+  	.pipe(concat('main.css'))
+  	.pipe(gulp.dest(out))
+  	.on('end', () => {
+  		del(files).then(() => {
+  			done();
+  		});
+  	});
+}));
+
+gulp.task('js-modules', (done) => {
+	var files = ['src/js/modules/*'],
+		out = 'build/js/modules/';
+
+	gulp.src(files)
+		.pipe(newer(out))
+		.pipe(concat('app.js'))
+		.pipe(minify())
+		.pipe(gulp.dest(out))
+		.on('end', () => {
+			del('build/js/modules/app.js').then(() => {
+				done();
+			});
+		});
 });
 
-gulp.task('css', function() {
-  	return gulp.src(folder.src + 'css/**/*')
-	    .pipe(purify([folder.src + 'js/**/*', folder.src + 'html/**/*']))
-		.pipe(cleanCSS())
-		//.pipe(sourcemaps.write())
-	    .pipe(gulp.dest(folder.build + 'css/'));
+gulp.task('templates', function() {
+	let out = 'build/templates/';
+  return gulp.src('src/templates/**')
+  	.pipe(newer(out))
+    .pipe(htmlmin({
+    	collapseWhitespace: true,
+    	maxLineLength: 150,
+    	removeComments: true,
+    	removeEmptyAttributes: true,
+    	removeRedundantAttributes: true
+    }))
+    .pipe(gulp.dest(out));
 });
 
-/*
-gulp.task('webserver', function() {
-  gulp.src(folder.build)
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: true,
-      open: true
-    }));
+gulp.task('connect', function() {
+  connect.server({
+    root: 'build/',
+    livereload: true
+  })
 });
-*/
+
+gulp.task('copy', gulp.series('images', 'css', 'js-modules', 'templates', (done) => {
+	var files = ['src/**/*', '!src/img/**', '!src/css/**', '!src/js/modules/**', '!src/templates/**', '!src/index.html'];
+
+	gulp.src('src/index.html')
+		.pipe(newer('build/'))
+    .pipe(htmlreplace({
+      'css': 'css/main.css',
+      'js': 'js/modules/app-min.js'
+    }))
+    .pipe(htmlmin({
+    	collapseWhitespace: true,
+    	maxLineLength: 150,
+    	removeComments: true,
+    	removeEmptyAttributes: true,
+    	removeRedundantAttributes: true
+    }))
+  	.pipe(gulp.dest('build/'))
+  	.on('end', () => {
+			gulp.src(files)
+				.pipe(newer('build/'))
+				.pipe(gulp.dest('build/'))
+				.pipe(connect.reload());
+			done();
+  	});
+}));
+
+gulp.task('default', gulp.parallel('copy', 'connect'));

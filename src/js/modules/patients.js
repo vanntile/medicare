@@ -1,6 +1,6 @@
 angular.module("patients", ["glbVar"])
     .component("patients", {
-        templateUrl: "assets/templates/patients.html",
+        templateUrl: "templates/patients.html",
         controller: ["$scope", "$log", "$state", "$location", "globalVariables", PatientsController]
     });
 

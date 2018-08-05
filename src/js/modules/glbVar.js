@@ -24,7 +24,7 @@ function globalVariablesFactory($http, $log) {
     self.currentProfileIndex = null;
     
     var _getPatients = function() {
-        return $http.get("/assets/data/patients.json", {
+        return $http.get("data/patients.json", {
             cache: true
         });
     };

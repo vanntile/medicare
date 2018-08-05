@@ -1,6 +1,6 @@
 angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "profile", "diagnose"])
 
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
         
         $stateProvider
             
@@ -25,11 +25,11 @@ angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "prof
             });
 
         $urlRouterProvider.otherwise("/login");
-    })
+    }])
 
-    .run(function($rootScope, $state) {
+    .run(["$state", function($state) {
         $state.go("login");
-    })
+    }])
 
     .controller("NavigatorController", ["$scope", "$location", "$log", "globalVariables", function($scope, $location, $log, globalVariables) {
         var self = this;
@@ -51,6 +51,12 @@ angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "prof
 
         $scope.$on('$locationChangeStart', function(event, next, current) {
             self.setUserData();
+        });
+
+        $('.collapse').on('show.bs.collapse', function() {
+            $(this).closest('.navbar').removeClass('navbar-transparent').addClass('bg-white');
+        }).on('hide.bs.collapse', function() {
+            $(this).closest('.navbar').addClass('navbar-transparent').removeClass('bg-white');
         });
 
         $scope.logout = function() {

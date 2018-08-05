@@ -1,6 +1,6 @@
 angular.module("profile", ["glbVar"])
     .component("profile", {
-        templateUrl: "assets/templates/profile.html",
+        templateUrl: "templates/profile.html",
         controller: ["$scope", "$log", "$state", "$location", "globalVariables", ProfileController]
     });
 
