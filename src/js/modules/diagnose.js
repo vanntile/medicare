@@ -11,7 +11,7 @@ function DiagnoseController($scope, $log, $state, $location, globalVariables) {
 
     self.initDashboardPageCharts = function() {
 
-        chartColor = "#FFFFFF";
+        var chartColor = "#FFFFFF";
 
         var ctx = document.getElementById('bigDashboardChart').getContext("2d");
 
@@ -107,5 +107,5 @@ function DiagnoseController($scope, $log, $state, $location, globalVariables) {
   		$location.path("/patients");
   	} else {
       self.initDashboardPageCharts();
-    };
+    }
 }

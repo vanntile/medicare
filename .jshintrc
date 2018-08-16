@@ -1,0 +1,16 @@
+{
+  "undef": true,
+  "unused": true,
+  "devel": true,
+  "globalstrict": false,
+  "esversion": 6,
+  "globals": {
+    "document": true,
+    "angular": true,
+    "$": true,
+    "jQuery": true,
+    "crypto": true,
+    "TextEncoder": true,
+    "Chart": true
+  }
+}

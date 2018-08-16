@@ -19,8 +19,8 @@ function globalVariablesFactory($http, $log) {
         this.city = "";
         this.address = "";
         this.about = "";
-    }
-    
+    };
+
     var _getPatients = function() {
         return $http.get("data/patients.json", {
             cache: true
@@ -86,6 +86,7 @@ function globalVariablesFactory($http, $log) {
             return self.PatientsList.length - 1;
         },
         removeNewPatient: function() {
+            self.isNewPatient = false;
             self.PatientsList.pop();
         },
         getNewPatient: function() {

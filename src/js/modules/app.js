@@ -1,9 +1,9 @@
-angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "profile", "diagnose"])
+angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "profile", "diagnose", "riskAnalysis"])
 
     .config(["$stateProvider", "$urlRouterProvider", function($stateProvider, $urlRouterProvider) {
-        
+
         $stateProvider
-            
+
             .state("login", {
                 url: "/login",
                 component: "login"
@@ -22,6 +22,11 @@ angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "prof
             .state("diagnose", {
                 url: "/diagnose/:patientId",
                 component: "diagnose"
+            })
+
+            .state("riskAnalysis", {
+                url: "/risk-analysis/:patientId",
+                component: "riskAnalysis"
             });
 
         $urlRouterProvider.otherwise("/login");
@@ -49,7 +54,7 @@ angular.module("medicareApp", ["ui.router", "glbVar", "login", "patients", "prof
             }
         };
 
-        $scope.$on('$locationChangeStart', function(event, next, current) {
+        $scope.$on('$locationChangeStart', function() {
             self.setUserData();
         });
 
