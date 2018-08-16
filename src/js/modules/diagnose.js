@@ -8,6 +8,12 @@ function DiagnoseController($scope, $log, $state, $location, globalVariables) {
 	var self = this;
 	self.patientProfile = globalVariables.getProfile();
 
+    self.isEnzymeSelected = false;
+
+    self.selectEnzyme = function() {
+        self.isEnzymeSelected = !self.isEnzymeSelected;
+    };
+
 
     self.initDashboardPageCharts = function() {
 

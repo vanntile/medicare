@@ -55,17 +55,20 @@
 	text-decoration: none;
 }
 
-.diagnose-container {
-	min-height: 100vh;
-	padding-bottom: 65px;
-}
-.diagnose-panel {
-	height: 600px;
-}
-
 .form-control::-webkit-input-placeholder, .form-control::-moz-placeholder, .form-control:-ms-input-placeholder,
 .form-control::-ms-input-placeholder, .form-control::placeholder{
   color: #fff!important;
   opacity: 1;
 	filter: alpha(opacity=100);
+}
+
+.diagnose-container {
+	min-height: 100vh;
+	padding-bottom: 65px;
+}
+.diagnose-top-panel {
+    overflow: visible;
+}
+.diagnose-panel {
+	height: 600px;
 }
