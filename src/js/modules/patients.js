@@ -9,8 +9,16 @@ function PatientsController($scope, $log, $state, $location, globalVariables) {
     self.PatientsList = undefined;
     self.PatientsList = globalVariables.getPatients();
 
+    if (globalVariables.getNewPatient() === true) {
+        globalVariables.removeNewPatient();
+    }
+
     self.getProfile = function(index) {
         globalVariables.setProfileIndex(index);
         $location.path("/profile/" + index);
+    };
+
+    self.newPatient = function () {
+        self.getProfile(globalVariables.newPatient());
     };
 }

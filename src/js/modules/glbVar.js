@@ -1,19 +1,6 @@
 angular.module("glbVar", [])
     .factory("globalVariables", ["$http", "$log", globalVariablesFactory]);
 
-/*
- * Patient Template
- *
-    {
-        "firstname": "",
-        "lastname": "",
-        "age": ,
-        "country": "",
-        "city": "",
-        "address": "",
-        "about": ""
-    }
-*/
 function globalVariablesFactory($http, $log) {
     var self = this;
 
@@ -22,6 +9,17 @@ function globalVariablesFactory($http, $log) {
 
     self.PatientsList = null;
     self.currentProfileIndex = null;
+    self.isNewPatient = false;
+
+    var _Patient = function() {
+        this.firstname = "";
+        this.lastname = "";
+        this.age = undefined;
+        this.country = "";
+        this.city = "";
+        this.address = "";
+        this.about = "";
+    }
     
     var _getPatients = function() {
         return $http.get("data/patients.json", {
@@ -81,6 +79,20 @@ function globalVariablesFactory($http, $log) {
         },
         setProfile: function(profile) {
             self.PatientsList[self.currentProfileIndex] = profile;
+        },
+        newPatient: function() {
+            self.PatientsList.push(new _Patient());
+            self.isNewPatient = true;
+            return self.PatientsList.length - 1;
+        },
+        removeNewPatient: function() {
+            self.PatientsList.pop();
+        },
+        getNewPatient: function() {
+            return self.isNewPatient;
+        },
+        setNewPatient: function() {
+            self.isNewPatient = false;
         }
     };
 }

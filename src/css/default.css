@@ -29,6 +29,7 @@
 }
 .card-login {
 	padding-bottom: .7rem;
+	color: #fff;
 }
 .logo-container {
 	width: 65px;
@@ -41,10 +42,9 @@
 	background-color: hsla(0,0%,100%,.1);
 	color: #fff;
 }
-.login-page .form-control::-moz-placeholder, .login-page .form-control::placeholder {
+.login-page .form-control::-moz-placeholder, .login-page .form-control::placeholder, .login-page .form-control:placeholder-shown, ::placeholder {
 	color: #ebebeb;
 	opacity: 1;
-	filter: alpha(opacity=100);
 }
 .login-page .input-group.no-border .form-control:focus, .login-page .input-group-focus .input-group-prepend .input-group-text {
  	background-color:hsla(0,0%,87%,.25)
@@ -61,4 +61,11 @@
 }
 .diagnose-panel {
 	height: 600px;
+}
+
+.form-control::-webkit-input-placeholder, .form-control::-moz-placeholder, .form-control:-ms-input-placeholder,
+.form-control::-ms-input-placeholder, .form-control::placeholder{
+  color: #fff!important;
+  opacity: 1;
+	filter: alpha(opacity=100);
 }

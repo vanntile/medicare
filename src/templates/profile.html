@@ -13,7 +13,7 @@
             Back
           </button>
           <button class="btn btn-success" ng-click="$ctrl.savePatientData()">Save</button>
-          <button class="btn btn-primary pull-right" ng-click="$ctrl.diagnose()">Diagnose
+          <button class="btn btn-primary pull-right" ng-click="$ctrl.diagnose()" ng-disabled="$ctrl.isNewPatient">Diagnose
             <span class="btn-label btn-label-right">
               <i class="now-ui-icons arrows-1_minimal-right"></i>
             </span>
@@ -22,56 +22,64 @@
         <div class="card-body">
           <form>
             <div class="row">
-              <div class="col-md-5 pr-1">
+              <div class="col-md-6 pr-1">
                 <div class="form-group">
-                  <label>Company</label>
-                  <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                  <label>First Name *</label>
+                  <input type="text" class="form-control" placeholder="First Name" ng-model="$ctrl.patientProfile.firstname">
                 </div>
               </div>
-              <div class="col-md-3 px-1">
+              <div class="col-md-6 pl-1">
                 <div class="form-group">
-                  <label>Username</label>
-                  <input type="text" class="form-control" disabled="" placeholder="Username" value="michael23">
-                </div>
-              </div>
-              <div class="col-md-4 pl-1">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" disabled="" placeholder="Email">
+                  <label>Last Name *</label>
+                  <input type="text" class="form-control" placeholder="Last Name" ng-model="$ctrl.patientProfile.lastname">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-6 pr-1">
                 <div class="form-group">
-                  <label>First Name</label>
-                  <input type="text" class="form-control" placeholder="First Name" ng-model="$ctrl.patientProfile.firstname">
+                  <label>Social Security Number *</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Social Security Number" ng-model="$ctrl.patientProfile.ssn">
                 </div>
               </div>
               <div class="col-md-6 pl-1">
                 <div class="form-group">
-                  <label>Last Name</label>
-                  <input type="text" class="form-control" placeholder="Last Name" ng-model="$ctrl.patientProfile.lastname">
+                  <label>Birthplace</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Birthplace" ng-model="$ctrl.patientProfile.birthplace">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-4 pr-1">
                 <div class="form-group">
-                  <label>City</label>
-                  <input type="text" class="form-control" placeholder="City" ng-model="$ctrl.patientProfile.city">
+                  <label>Date of birth</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Date of birth" ng-model="$ctrl.patientProfile.dateOfBirth">
                 </div>
               </div>
               <div class="col-md-4 px-1">
                 <div class="form-group">
-                  <label>Country</label>
-                  <input type="text" class="form-control" placeholder="Country" ng-model="$ctrl.patientProfile.country">
+                  <label>Age</label>
+                  <input type="number" class="form-control" placeholder="Age" ng-model="$ctrl.patientProfile.age">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
-                  <label>Age</label>
-                  <input type="number" class="form-control" placeholder="Age" ng-model="$ctrl.patientProfile.age">
+                  <label>Sex</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Sex" ng-model="$ctrl.patientProfile.sex">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" class="form-control" placeholder="City" ng-model="$ctrl.patientProfile.city">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Country</label>
+                  <input type="text" class="form-control" placeholder="Country" ng-model="$ctrl.patientProfile.country">
                 </div>
               </div>
             </div>
@@ -84,10 +92,16 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6 pr-1">
                 <div class="form-group">
-                  <label>About Patient</label>
-                  <textarea rows="4" cols="80" class="form-control" placeholder="Add observations" ng-model="$ctrl.patientProfile.about"></textarea>
+                  <label>Phone Number</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Phone Number" ng-model="$ctrl.patientProfile.phone">
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="text" class="form-control" disabled="" placeholder="Email" ng-model="$ctrl.patientProfile.email">
                 </div>
               </div>
             </div>
