@@ -29,14 +29,12 @@
                 <th>Name</th>
                 <th>Country</th>
                 <th>City</th>
-                <th>Age</th>
               </thead>
               <tbody>
                 <tr ng-repeat="patient in $ctrl.PatientsList | filter:search" ng-click="$ctrl.getProfile($index)">
                   <td data-th="Name">{{patient.firstname}} {{patient.lastname}}</td>
                   <td data-th="Country">{{patient.country}}</td>
                   <td data-th="City">{{patient.city}}</td>
-                  <td data-th="Age">{{patient.age}}</td>
                 </tr>
               </tbody>
             </table>
