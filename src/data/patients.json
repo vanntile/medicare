@@ -12,7 +12,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -26,7 +26,7 @@
 				    "ssn": 153756,
 				    "birthplace": "Sweden",
 				    "birthdate": "21/05/1987",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "077594672",
 				    "email": "minervah@gmail.com",
 				    "about": ""
@@ -40,7 +40,7 @@
 				    "ssn": 127267,
 				    "birthplace": "Mexico",
 				    "birthdate": "12/02/1988",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "Rodsagedriguez@gmail.com",
 				    "about": ""
@@ -54,7 +54,7 @@
 				    "ssn": 958656,
 				    "birthplace": "Minessota",
 				    "birthdate": "22/02/1990",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "",
 				    "about": ""
@@ -68,7 +68,7 @@
 				    "ssn": 876545,
 				    "birthplace": "Belgium",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dorisgree@gyahoo.com",
 				    "about": ""
@@ -82,7 +82,7 @@
 				    "ssn": 348697,
 				    "birthplace": "India",
 				    "birthdate": "14/09/2002",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "porter@gmail.com",
 				    "about": ""
@@ -96,7 +96,7 @@
 				    "ssn": 897965,
 				    "birthplace": "Puerto Rico",
 				    "birthdate": "22/02/1966",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "jon.porter@gmail.com",
 				    "about": ""
@@ -110,7 +110,7 @@
 				    "ssn": 276689,
 				    "birthplace": "Finland",
 				    "birthdate": "02/05/1996",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "reedrich@gmail.com",
 				    "about": ""
@@ -124,7 +124,7 @@
 				    "ssn": 787567,
 				    "birthplace": "lUXEMBOURG",
 				    "birthdate": "22/02/1999",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "susanreed@gmail.com",
 				    "about": ""
@@ -143,7 +143,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -157,7 +157,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -171,7 +171,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -185,7 +185,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -199,7 +199,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -213,7 +213,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -227,7 +227,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -241,7 +241,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""
@@ -255,7 +255,7 @@
 				    "ssn": 123456,
 				    "birthplace": "Alexandria, Egypt",
 				    "birthdate": "22/02/1976",
-				    "sex": "F",
+				    "sex": 1,
 				    "phone": "072874672",
 				    "email": "dakotarice@gmail.com",
 				    "about": ""

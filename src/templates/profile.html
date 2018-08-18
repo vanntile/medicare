@@ -60,13 +60,16 @@
               <div class="col-md-4 px-1">
                 <div class="form-group">
                   <label>Age</label>
-                  <input type="number" class="form-control" placeholder="Age" ng-model="$ctrl.patientProfile.age">
+                  <input type="number" class="form-control" disabled="" placeholder="Age" ng-model="$ctrl.patientProfile.age">
                 </div>
               </div>
               <div class="col-md-4 pl-1">
                 <div class="form-group">
                   <label>Sex</label>
-                  <input type="text" class="form-control" placeholder="Sex" ng-model="$ctrl.patientProfile.sex">
+                  <select class="form-control" name="" ng-model="$ctrl.patientProfile.sex">
+                      <option ng-value="0">Male</option>
+                      <option ng-value="1">Female</option>
+                  </select>
                 </div>
               </div>
             </div>

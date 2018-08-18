@@ -27,6 +27,11 @@ function globalVariablesFactory($http, $log) {
         });
     };
 
+    var _getAge = function(birthdate) {
+        let bdate = new Date(birthdate.substr(6, 4) / 1, birthdate.substr(3, 2) / 1, birthdate.substr(0, 2) / 1);
+        return Math.abs((new Date(Date.now() - bdate.getTime())).getUTCFullYear() - 1970);
+    };
+
     return {
         hash: function(algo, str) {
             return crypto.subtle.digest(algo, new TextEncoder().encode(str));
@@ -75,14 +80,12 @@ function globalVariablesFactory($http, $log) {
             if (self.currentProfileIndex == null) {
                 return null;
             }
+            self.PatientsList[self.currentProfileIndex].age = _getAge(self.PatientsList[self.currentProfileIndex].birthdate);
             return self.PatientsList[self.currentProfileIndex];
         },
         setProfile: function(profile) {
             self.PatientsList[self.currentProfileIndex] = profile;
-            let birthdate = new Date(profile.birthdate.substr(6, 4) / 1, profile.birthdate.substr(3, 2) / 1, profile.birthdate.substr(0, 2) / 1);
-            let age = Math.abs((new Date(Date.now() - birthdate.getTime())).getUTCFullYear - 1970)
-            $log.debug(birthdate, age);
-            $log.debug(self.PatientsList[self.currentProfileIndex]);
+            self.PatientsList[self.currentProfileIndex].age = _getAge(profile.birthdate);
         },
         newPatient: function() {
             self.PatientsList.push(new _Patient());
@@ -98,6 +101,10 @@ function globalVariablesFactory($http, $log) {
         },
         setNewPatient: function() {
             self.isNewPatient = false;
+        },
+        saveRisk: function(risk) {
+            self.PatientsList[self.currentProfileIndex].risk = risk;
+            $log.debug(self.PatientsList[self.currentProfileIndex]);
         }
     };
 }

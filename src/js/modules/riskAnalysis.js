@@ -26,11 +26,11 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
 
 
     self.savePatientData = function() {
-        if (_isNull(self.patientProfile.firstname) || _isNull(self.patientProfile.lastname)) {
+        // TODO data validation
+        if (_isNull(self.patientProfile.isBPTreated) || _isNull(self.patientProfile.isSmoker) || _isNull(self.patientProfile.totalCholesterol) || _isNull(self.patientProfile.hdlCholesterol) || _isNull(self.patientProfile.systolicBloodPressure)) {
             $.notify({
               icon: "now-ui-icons ui-1_simple-remove",
-              message: "Cannot save empty patient!"
-
+              message: "Cannot calculate risk! Please, complete the form"
             }, {
               type: 'danger',
               delay: 1000,
@@ -40,13 +40,15 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
               }
             });
         } else {
+            self.risk = self.calculateRisk();
+            globalVariables.saveRisk(self.risk);
             $.notify({
               icon: "now-ui-icons ui-1_check",
-              message: "<b>" + self.patientProfile.firstname + " " + self.patientProfile.lastname + "</b>'s data has been saved."
+              message: "Your Risk Score is " + self.risk
 
             }, {
-              type: 'success',
-              delay: 1000,
+              type: 'info',
+              delay: 5000,
               placement: {
                 from: 'top',
                 align: 'center'
@@ -55,8 +57,8 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
         }
     };
 
-    var result = 0;
     self.calculateRisk = function() {
+      var result = 0;
       var sex = self.patientProfile.sex;
       var age = self.patientProfile.age;
       var isSmoker = self.patientProfile.isSmoker;
@@ -117,7 +119,7 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
             result += 3;
           }
 
-          if (sex == "F") {
+          if (sex === 1) {
             if (totalCholesterol < 160) {
               result += 0;
             } else if (totalCholesterol <= 199) {
@@ -151,7 +153,7 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
             result += 8;
           }
 
-          if (sex == "F") {
+          if (sex === 1) {
             if (totalCholesterol < 160) {
               result += 0;
             } else if (totalCholesterol <= 199) {
@@ -189,7 +191,7 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
             }
           }
 
-          if (sex == "F") {
+          if (sex === 1) {
             if (totalCholesterol < 160) {
               result += 0;
             } else if (totalCholesterol <= 199) {
@@ -231,7 +233,7 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
           }
         }
 
-        if (sex == "F") {
+        if (sex === 1) {
 
           if (totalCholesterol < 160) {
               result += 0;
@@ -243,7 +245,7 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
               result += 2;
             } else {
              result += 2;
-            } 
+            }
         } else {
 
           if (totalCholesterol < 160) {
@@ -259,7 +261,7 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
           }
         }
 
-      } 
+      }
 
       // based on smoker/non smoker
       if (isSmoker) {
@@ -277,13 +279,13 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
       // based on hdl cholesterol
       if (hdlCholesterol >= 60) {
         result += -1;
-      } else if (hdlCholesterol >= 40 && hdlCholesterol <= 49 ) {
+      } else if (hdlCholesterol >= 40 && hdlCholesterol <= 49) {
         result += 1;
       } else if (hdlCholesterol < 40) {
         result += 2;
       }
 
-      // based on systolic blood pressure 
+      // based on systolic blood pressure
       if (systolicBloodPressure < 120) {
           result += 0;
 
@@ -318,34 +320,48 @@ function RiskAnalysisController($scope, $log, $state, $location, globalVariables
       }
 
       // final results: calculated 10 year risk in %
-      if (result == 0) {
+      if (result <= 0) {
         // de afisat risk < 1%
+        return 0;
       } else if (result <= 4) {
         // de afisat risk 1%
+        return 1;
       } else if (result <= 6) {
         // 2%
-      } else if (result == 7) {
-        // 3% 
-      } else if (result == 8) {
-        // 4% 
-      } else if (result == 9) {
-        // 5% 
-      } else if (result == 10) {
-        // 6% 
-      } else if (result == 11) {
-        // 8% 
-      } else if (result == 12) {
-        // 10% 
-      } else if (result == 13) {
-        // 12% 
-      } else if (result == 14) {
-        // 16% 
-      } else if (result == 15) {
-        // 20% 
-      } else if (result == 16) {
-        // 25% 
-      } else { // result >= 17
-        // > 30% 
+        return 2;
+      } else if (result === 7) {
+        // 3%
+        return 3;
+      } else if (result === 8) {
+        // 4%
+        return 4;
+      } else if (result === 9) {
+        // 5%
+        return 5;
+      } else if (result === 10) {
+        // 6%
+        return 6;
+      } else if (result === 11) {
+        // 8%
+        return 8;
+      } else if (result === 12) {
+        // 10%
+        return 10;
+      } else if (result === 13) {
+        // 12%
+        return 12;
+      } else if (result === 14) {
+        // 16%
+        return 16;
+      } else if (result === 15) {
+        // 20%
+        return 20;
+      } else if (result === 16) {
+        // 25%
+        return 25;
+      } else {
+        // > 30%
+        return 30;
       }
 
     };
