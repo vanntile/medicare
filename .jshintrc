@@ -6,6 +6,7 @@
   "esversion": 6,
   "globals": {
     "document": true,
+    "window": true,
     "angular": true,
     "$": true,
     "jQuery": true,

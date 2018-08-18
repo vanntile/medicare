@@ -1,12 +1,13 @@
 angular.module("diagnose", ["glbVar"])
     .component("diagnose", {
         templateUrl: "templates/diagnose.html",
-        controller: ["$scope", "$log", "$state", "$location", "globalVariables", DiagnoseController]
+        controller: ["$scope", "$log", "$state", "$location", "$interval", "globalVariables", DiagnoseController]
     });
 
-function DiagnoseController($scope, $log, $state, $location, globalVariables) {
+function DiagnoseController($scope, $log, $state, $location, $interval, globalVariables) {
 	var self = this;
 	self.patientProfile = globalVariables.getProfile();
+    $scope.Math = window.Math;
 
     self.isEnzymeSelected = false;
 
@@ -14,6 +15,26 @@ function DiagnoseController($scope, $log, $state, $location, globalVariables) {
         self.isEnzymeSelected = !self.isEnzymeSelected;
     };
 
+    self.countDown = 900;
+    self.countDownNmber = 0;
+    self.startTmer = function() {
+        self.timer = $interval(function() {
+            $log.debug(self.countDown--);
+            if (self.countDown === 0) {
+                self.countDown = 900;
+                self.countDownNmber++;
+            }
+            if (self.countDownNmber === 8) {
+                $interval.cancel(self.timer);
+            }
+        }, 1000,0);
+    };
+    self.startTmer();
+
+    $scope.$on('$destroy', function() {
+        // Make sure that the interval is destroyed too
+        $interval.cancel(self.timer);
+    });
 
     self.initDashboardPageCharts = function() {
 
