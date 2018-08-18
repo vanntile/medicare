@@ -79,6 +79,10 @@ function globalVariablesFactory($http, $log) {
         },
         setProfile: function(profile) {
             self.PatientsList[self.currentProfileIndex] = profile;
+            let birthdate = new Date(profile.birthdate.substr(6, 4) / 1, profile.birthdate.substr(3, 2) / 1, profile.birthdate.substr(0, 2) / 1);
+            let age = Math.abs((new Date(Date.now() - birthdate.getTime())).getUTCFullYear - 1970)
+            $log.debug(birthdate, age);
+            $log.debug(self.PatientsList[self.currentProfileIndex]);
         },
         newPatient: function() {
             self.PatientsList.push(new _Patient());
