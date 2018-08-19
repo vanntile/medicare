@@ -62,13 +62,13 @@
 	filter: alpha(opacity=100);
 }
 
-.diagnose-container {
-	min-height: 100vh;
-	padding-bottom: 65px;
-}
-.diagnose-top-panel {
-    overflow: visible;
-}
 .diagnose-panel {
-	height: 600px;
+    height: inherit;
+	padding: 96px 10px 150px;
+}
+
+.diagnose-chart {
+    height: 60vh;
+    min-height: 360px;
+    max-height: 560px;
 }

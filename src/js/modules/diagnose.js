@@ -8,33 +8,78 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
 	var self = this;
 	self.patientProfile = globalVariables.getProfile();
     $scope.Math = window.Math;
+    self.dropdownText = "Choose Enzyme";
+    self.isShownTimer = false;
+    self.enzyme = 0;
+    self.enzymeValues = [[], [], [], [], [], [], []];
 
-    self.isEnzymeSelected = false;
-
-    self.selectEnzyme = function() {
-        self.isEnzymeSelected = !self.isEnzymeSelected;
+    self.goBack = function() {
+        $location.path("/profile/" + globalVariables.getProfileIndex());
     };
 
-    self.countDown = 900;
-    self.countDownNmber = 0;
+    self.setEnzyme = function(index) {
+        self.enzyme = index;
+        // TODO if the previous measurement hasn't completed, continue
+        $log.debug(self.enzymeValues);
+
+        if (index === 1) {
+            self.dropdownText = "MYG";
+        } else if (index === 2) {
+            self.dropdownText = "CKMB1 + CKMB2";
+        } else if (index === 3) {
+            self.dropdownText = "HFABP";
+        } else if (index === 4) {
+            self.dropdownText = "CRP";
+        } else if (index === 5) {
+            self.dropdownText = "cTnT";
+        } else if (index === 6) {
+            self.dropdownText = "cTnl";
+        }
+
+        //$interval.cancel(self.timer); // stop the previous timer
+
+        if (self.enzymeValues[self.enzyme].length === 0) {
+            self.enzymeValues[self.enzyme].push({
+                "index": 0,
+                "value": 0
+            });
+        }
+    };
+
+    self.enzymeUpdated = function(index) {
+        if (index === 0 && self.enzymeValues[self.enzyme].length === 1) {
+            $log.debug("sunt aici");
+            if (self.isShownTimer === false) {
+                self.isShownTimer = true;
+                self.startTmer();
+            }
+        }
+
+        // TODO update graph data
+    };
+
     self.startTmer = function() {
+        self.countDown = 4;
         self.timer = $interval(function() {
             $log.debug(self.countDown--);
             if (self.countDown === 0) {
-                self.countDown = 900;
-                self.countDownNmber++;
-            }
-            if (self.countDownNmber === 8) {
-                $interval.cancel(self.timer);
+                self.countDown = 4;
+                let l = self.enzymeValues[self.enzyme].length;
+
+                self.enzymeValues[self.enzyme].push({
+                    "index": l,
+                    "value": 0
+                });
+
+                if (self.enzymeValues[self.enzyme].length === 3) {
+                    self.isShownTimer = false;
+                    $interval.cancel(self.timer);
+                }
+
+                $log.debug(self.enzymeValues[self.enzyme]);
             }
         }, 1000,0);
     };
-    self.startTmer();
-
-    $scope.$on('$destroy', function() {
-        // Make sure that the interval is destroyed too
-        $interval.cancel(self.timer);
-    });
 
     self.initDashboardPageCharts = function() {
 
@@ -129,10 +174,14 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
         });
     };
 
+    $scope.$on('$destroy', function() {
+        // Make sure that $interval is destroyed too
+        $interval.cancel(self.timer);
+    });
 
   	if (self.patientProfile == null) {
   		$location.path("/patients");
   	} else {
-      self.initDashboardPageCharts();
+        self.initDashboardPageCharts();
     }
 }
