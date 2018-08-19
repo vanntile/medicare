@@ -1,0 +1,95 @@
+<div class="panel-header panel-header-md">
+</div>
+<div class="content container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Risk Analysis Assessment</h2>
+          <button class="btn btn-primary" ng-click="$ctrl.goBack()">
+            <span class="btn-label btn-label-left">
+              <i class="now-ui-icons arrows-1_minimal-left"></i>
+            </span>
+            Patients
+          </button>
+          <button class="btn btn-primary" ng-click="$ctrl.diagnose()" ng-disabled="$ctrl.isNewPatient">Diagnose
+            <span class="btn-label btn-label-right">
+              <i class="now-ui-icons arrows-1_minimal-right"></i>
+            </span>
+          </button>
+          <button class="btn btn-success pull-right" ng-click="$ctrl.savePatientData()">Save</button>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="pl-3">
+                  <p>{{$ctrl.patientProfile.firstname}} {{$ctrl.patientProfile.lastname}}, {{$ctrl.patientProfile.sex == 1 ? 'Female' : 'Male'}}, {{$ctrl.patientProfile.age}} years</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Smoker</label>
+                  <select class="form-control" name="" ng-model="$ctrl.patientProfile.isSmoker">
+                      <option ng-value="0">No</option>
+                      <option ng-value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Total cholesterol</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Norm 3.9 - 5.2" ng-model="$ctrl.patientProfile.totalCholesterol">
+                    <div class="input-group-append">
+                        <span class="input-group-text">mmol/L</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>HDL cholesterol</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Norm 1 - 2.1" ng-model="$ctrl.patientProfile.hdlCholesterol">
+                    <div class="input-group-append">
+                        <span class="input-group-text">mmol/L</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Systolic Blood Pressure</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Norm 100 - 120" ng-model="$ctrl.patientProfile.systolicBloodPressure">
+                    <div class="input-group-append">
+                        <span class="input-group-text">mmHg</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Blood pressure being treated with medicines</label>
+                  <select class="form-control" name="" ng-model="$ctrl.patientProfile.isBPTreated">
+                      <option ng-value="0">No</option>
+                      <option ng-value="1">Yes</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

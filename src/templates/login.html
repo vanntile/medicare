@@ -1,0 +1,48 @@
+<div class="login-page">
+  <div class="login-page-overlay">
+    <div class="container">
+      <div class="col-md-6 col-lg-4 ml-auto mr-auto">
+        <form action="" class="form" method="">
+          <div class="card card-login card-plain">
+            <div class="card-header">
+              <div class="logo-container"><img alt="" src="img/now-logo.png"></div>
+            </div>
+            <div class="card-body">
+              <div class="pull-left">
+                <h6><a class="link footer-link">Username</a></h6>
+              </div>
+              <div class="input-group no-border form-control-lg">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons users_circle-08"></i>
+                  </div>
+                </div>
+                <input class="form-control" type="text" ng-model="username">
+              </div>
+              <div class="pull-left">
+                <h6><a class="link footer-link">Password</a></h6>
+              </div>
+              <div class="input-group no-border form-control-lg">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="now-ui-icons text_caps-small"></i>
+                  </div>
+                </div>
+                <input class="form-control" type="password" ng-model="password" ng-keyup="$event.keyCode == 13 && $ctrl.login(username, password)">
+              </div>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary btn-round btn-lg btn-block mb-3" ng-click="$ctrl.login(username, password)" href="">Login</a>
+              <div class="pull-left">
+                <h6><a class="link footer-link d-none" href="">Create Account</a></h6>
+              </div>
+              <div class="pull-right">
+                <h6><a class="link footer-link d-none" href="">Need Help?</a></h6>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

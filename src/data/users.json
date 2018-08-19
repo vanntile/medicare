@@ -1,0 +1,15 @@
+{
+	"users": [
+		{
+			"name": "Dr Andra Ciutac",
+			"username": "andra.ciutac",
+			"password": "andra.ciutac123#",
+			"key": "50be70645a39f9d89072f08e428eeb3f"
+		}, {
+			"name": "Matt Smith",
+			"username": "matt.smith",
+			"password": "matt.smith.is.the.doctor",
+			"key": "53ec7ffbda2db0262c8ec92623fa725e"
+		}
+	]
+}

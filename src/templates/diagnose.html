@@ -1,0 +1,35 @@
+<div class="panel-header panel-header-md diagnose-top-panel">
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-12">
+	      <div class="card">
+	        <div class="card-body">
+				<div class="row">
+					<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="dropdown" ng-class="{'show': $ctrl.isEnzymeSelected}" ng-click="$ctrl.selectEnzyme()">
+                            <button class="dropdown-toggle btn btn-primary btn-round btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Dropdown
+                            </button>
+                            <div class="dropdown-menu" ng-class="{'show': $ctrl.isEnzymeSelected}" aria-labelledby="dropdownMenuButton" x-placement="bottom-start">
+                                <h6 class="dropdown-header">Dropdown header</h6>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-xl-2 offset-xl-8 col-lg-3 offset-lg-6 col-md-4 offset-md-4 col-sm-6">
+						{{Math.floor($ctrl.countDown / 60)}}:{{$ctrl.countDown % 60}}
+					</div>
+				</div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+<div class="diagnose-container">
+	<div class="panel-header diagnose-panel">
+		<canvas id="bigDashboardChart"></canvas>
+	</div>
+</div>
