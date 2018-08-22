@@ -12,6 +12,7 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
     self.isShownTimer = false;
     self.enzyme = 0;
     self.enzymeValues = [[], [], [], [], [], [], []];
+    self.defaultData = [50, 150, 100, 190, 130, 90, 150, 160];
 
     self.goBack = function() {
         $location.path("/profile/" + globalVariables.getProfileIndex());
@@ -19,29 +20,41 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
 
     self.setEnzyme = function(index) {
         self.enzyme = index;
-        // TODO if the previous measurement hasn't completed, continue
         $log.debug(self.enzymeValues);
 
         if (index === 1) {
             self.dropdownText = "MYG";
+            self.myChart.data.datasets[0].label = "MYG default";
         } else if (index === 2) {
             self.dropdownText = "CKMB1 + CKMB2";
+            self.myChart.data.datasets[0].label = "CKMB1 + CKMB2 default";
         } else if (index === 3) {
             self.dropdownText = "HFABP";
+            self.myChart.data.datasets[0].label = "HFABP default";
         } else if (index === 4) {
             self.dropdownText = "CRP";
+            self.myChart.data.datasets[0].label = "CRP default";
         } else if (index === 5) {
             self.dropdownText = "cTnT";
+            self.myChart.data.datasets[0].label = "cTnT default";
         } else if (index === 6) {
             self.dropdownText = "cTnl";
+            self.myChart.data.datasets[0].label = "cTnl default";
         }
 
-        //$interval.cancel(self.timer); // stop the previous timer
+        self.myChart.data.datasets[0].data = self.defaultData;
+        self.myChart.update();
+
+        if($(".diagnose-chart").hasClass("chart-hidden")) {
+            $(".diagnose-chart").removeClass("chart-hidden");
+        }
 
         if (self.enzymeValues[self.enzyme].length === 0) {
-            self.enzymeValues[self.enzyme].push({
-                "index": 0,
-                "value": 0
+            self.enzymeValues.forEach((enzyme) => {
+                enzyme.push({
+                    "index": 0,
+                    "value": 0
+                });
             });
         }
     };
@@ -55,7 +68,8 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
             }
         }
 
-        // TODO update graph data
+        self.myChart.data.datasets[1].data = self.enzymeValues[self.enzyme].map(x => x.value / 1);
+        self.myChart.update();
     };
 
     self.startTmer = function() {
@@ -66,12 +80,25 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
                 self.countDown = 4;
                 let l = self.enzymeValues[self.enzyme].length;
 
-                self.enzymeValues[self.enzyme].push({
-                    "index": l,
-                    "value": 0
+                self.enzymeValues.forEach((enzyme) => {
+                    enzyme.push({
+                        "index": l,
+                        "value": 0
+                    });
+                });
+                $.notify({
+                    icon: "now-ui-icons files_paper",
+                    message: "Insert measurement #" + (l + 1) + " for " + self.dropdownText
+                }, {
+                    type: 'info',
+                    delay: 2000,
+                    placement: {
+                        from: 'top',
+                        align: 'center'
+                    }
                 });
 
-                if (self.enzymeValues[self.enzyme].length === 3) {
+                if (self.enzymeValues[self.enzyme].length === 8) {
                     self.isShownTimer = false;
                     $interval.cancel(self.timer);
                 }
@@ -81,11 +108,11 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
         }, 1000,0);
     };
 
-    self.initDashboardPageCharts = function() {
+    self.initDiagnoseChart = function() {
 
         var chartColor = "#FFFFFF";
 
-        var ctx = document.getElementById('bigDashboardChart').getContext("2d");
+        var ctx = document.getElementById('diagnoseChart').getContext("2d");
 
         var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
         gradientStroke.addColorStop(0, '#80b6f4');
@@ -95,10 +122,10 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
 
-        var myChart = new Chart(ctx, {
+        self.myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+                labels: ["0", "15min", "30min", "45min", "1h", "1h 15min", "1h 30min", "1h 45min"],
                 datasets: [{
                     label: "Data",
                     borderColor: chartColor,
@@ -113,7 +140,22 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
                     fill: true,
                     backgroundColor: gradientFill,
                     borderWidth: 2,
-                    data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+                    data: []
+                }, {
+                    label: "Patient level",
+                    borderColor: chartColor,
+                    pointBorderColor: chartColor,
+                    pointBackgroundColor: "#1e3d60",
+                    pointHoverBackgroundColor: "#1e3d60",
+                    pointHoverBorderColor: chartColor,
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 7,
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: gradientFill,
+                    borderWidth: 2,
+                    data: []
                 }]
             },
             options: {
@@ -182,6 +224,6 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
   	if (self.patientProfile == null) {
   		$location.path("/patients");
   	} else {
-        self.initDashboardPageCharts();
+        self.initDiagnoseChart();
     }
 }
