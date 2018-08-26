@@ -14,10 +14,16 @@ function globalVariablesFactory($http, $log) {
     var _Patient = function() {
         this.firstname = "";
         this.lastname = "";
-        this.age = undefined;
         this.country = "";
         this.city = "";
         this.address = "";
+        this.ssn = "";
+        this.birthplace = "";
+        this.birthdate = "";
+        this.age = undefined;
+        this.sex = undefined;
+        this.phone = "";
+        this.email = "";
         this.about = "";
     };
 
@@ -80,7 +86,9 @@ function globalVariablesFactory($http, $log) {
             if (self.currentProfileIndex == null) {
                 return null;
             }
-            self.PatientsList[self.currentProfileIndex].age = _getAge(self.PatientsList[self.currentProfileIndex].birthdate);
+            if (self.isNewPatient === false) {
+                self.PatientsList[self.currentProfileIndex].age = _getAge(self.PatientsList[self.currentProfileIndex].birthdate);
+            }
             return self.PatientsList[self.currentProfileIndex];
         },
         setProfile: function(profile) {

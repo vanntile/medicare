@@ -12,7 +12,47 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
     self.isShownTimer = false;
     self.enzyme = 0;
     self.enzymeValues = [[], [], [], [], [], [], []];
-    self.defaultData = [50, 150, 100, 190, 130, 90, 150, 160];
+
+    // we need, for each enzyme: initial, rate, rate unit measure and timespan
+    self.defaultRates = [
+        {initial: 0, rate: 10},
+        {initial: 80, rate: 20},
+        {initial: 30, rate: 12},
+        {initial: 10, rate: 40},
+        {initial: 100, rate: 25},
+        {initial: 80, rate: 20},
+        {initial: 80, rate: 20}
+    ];
+
+    self.defaultData = self.defaultRates.map((enzyme) => {
+        let arr = [];
+
+        for (let i = 0; i < 25; i++) {
+            arr.push(enzyme.initial + i * enzyme.rate);
+        }
+
+        return arr;
+    });
+
+    var _closest = function(n, arr) {
+        var len = arr.length;
+        if (n <= arr[0]) {
+            return 0;
+        } else if (n >= arr[len - 1]) {
+            return len;
+        }
+
+        for (let i = 1; i < len - 9; i++) {
+            if (arr[i] === n) {
+                return i;
+            }
+
+            if (arr[i] < n && n < arr[i + 1]) {
+                return ((n - arr[i] <= arr[i + 1] - n) ? i : (i + 1));
+            }
+        }
+        return len - 9;
+    };
 
     self.goBack = function() {
         $location.path("/profile/" + globalVariables.getProfileIndex());
@@ -38,11 +78,11 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
             self.dropdownText = "cTnT";
             self.myChart.data.datasets[0].label = "cTnT default";
         } else if (index === 6) {
-            self.dropdownText = "cTnl";
-            self.myChart.data.datasets[0].label = "cTnl default";
+            self.dropdownText = "cTnI";
+            self.myChart.data.datasets[0].label = "cTnI default";
         }
 
-        self.myChart.data.datasets[0].data = self.defaultData;
+        self.myChart.data.datasets[0].data = self.defaultData[index];
         self.myChart.update();
 
         if($(".diagnose-chart").hasClass("chart-hidden")) {
@@ -60,12 +100,15 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
     };
 
     self.enzymeUpdated = function(index) {
-        if (index === 0 && self.enzymeValues[self.enzyme].length === 1) {
-            $log.debug("sunt aici");
-            if (self.isShownTimer === false) {
+        if (index === 0) {
+            if (self.enzymeValues[self.enzyme].length === 1 && self.isShownTimer === false) {
                 self.isShownTimer = true;
                 self.startTmer();
             }
+
+            let idx = _closest(self.enzymeValues[self.enzyme][0].value / 1, self.defaultData[self.enzyme]);
+            self.myChart.data.datasets[0].data = self.defaultData[self.enzyme].slice(idx, idx + 9);
+            self.myChart.update();
         }
 
         self.myChart.data.datasets[1].data = self.enzymeValues[self.enzyme].map(x => x.value / 1);
@@ -98,7 +141,7 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
                     }
                 });
 
-                if (self.enzymeValues[self.enzyme].length === 8) {
+                if (self.enzymeValues[self.enzyme].length === 9) {
                     self.isShownTimer = false;
                     $interval.cancel(self.timer);
                 }
@@ -125,7 +168,7 @@ function DiagnoseController($scope, $log, $state, $location, $interval, globalVa
         self.myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["0", "15min", "30min", "45min", "1h", "1h 15min", "1h 30min", "1h 45min"],
+                labels: ["0", "15min", "30min", "45min", "1h", "1h 15min", "1h 30min", "1h 45min", "2h"],
                 datasets: [{
                     label: "Data",
                     borderColor: chartColor,
