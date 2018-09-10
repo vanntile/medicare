@@ -1,7 +1,6 @@
 // Gulp.js configuration
 var gulp = require('gulp'),
 	del = require('del'),
-	copy = require('gulp-copy')
 	concat = require('gulp-concat'),
 	newer = require('gulp-newer'),
 	connect = require('gulp-connect'),
@@ -78,16 +77,17 @@ gulp.task('templates', function() {
     	maxLineLength: 150,
     	removeComments: true,
     	removeEmptyAttributes: true,
-    	removeRedundantAttributes: true
+    	removeRedundantAttributes: true,
+		ignoreCustomFragments: [ /\{\{[\s\S]*?\}\}/ ]
     }))
     .pipe(gulp.dest(out));
 });
 
 gulp.task('connect', function() {
-  connect.server({
-    root: 'build/',
-    livereload: true
-  })
+  	connect.server({
+	    root: 'build/',
+	    livereload: true
+	});
 });
 
 gulp.task('copy', gulp.series('images', 'css', 'js-modules', 'templates', (done) => {
@@ -104,7 +104,8 @@ gulp.task('copy', gulp.series('images', 'css', 'js-modules', 'templates', (done)
     	maxLineLength: 150,
     	removeComments: true,
     	removeEmptyAttributes: true,
-    	removeRedundantAttributes: true
+    	removeRedundantAttributes: true,
+		ignoreCustomFragments: [ /\{\{[\s\S]*?\}\}/ ]
     }))
   	.pipe(gulp.dest('build/'))
   	.on('end', () => {

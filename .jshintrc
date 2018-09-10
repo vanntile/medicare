@@ -12,6 +12,7 @@
     "jQuery": true,
     "crypto": true,
     "TextEncoder": true,
-    "Chart": true
+    "Chart": true,
+    "require": true
   }
 }
