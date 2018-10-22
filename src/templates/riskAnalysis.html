@@ -23,7 +23,7 @@
           <form>
             <div class="row">
               <div class="pl-3">
-                  <p>{{$ctrl.patientProfile.firstname}} {{$ctrl.patientProfile.lastname}}, {{$ctrl.patientProfile.sex == 1 ? 'Female' : 'Male'}}, {{$ctrl.patientProfile.age}} years</p>
+                <p>{{$ctrl.patientProfile.firstname}} {{$ctrl.patientProfile.lastname}}, {{$ctrl.patientProfile.sex == 1 ? 'Female' : 'Male'}}, {{$ctrl.patientProfile.age}} years</p>
               </div>
             </div>
             <div class="row">
@@ -31,8 +31,8 @@
                 <div class="form-group">
                   <label>Smoker</label>
                   <select class="form-control" name="" ng-model="$ctrl.patientProfile.isSmoker">
-                      <option ng-value="0">No</option>
-                      <option ng-value="1">Yes</option>
+                    <option ng-value="0">No</option>
+                    <option ng-value="1">Yes</option>
                   </select>
                 </div>
               </div>
@@ -44,7 +44,7 @@
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Norm 3.9 - 5.2" ng-model="$ctrl.patientProfile.totalCholesterol">
                     <div class="input-group-append">
-                        <span class="input-group-text">mmol/L</span>
+                      <span class="input-group-text">mmol/L</span>
                     </div>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Norm 1 - 2.1" ng-model="$ctrl.patientProfile.hdlCholesterol">
                     <div class="input-group-append">
-                        <span class="input-group-text">mmol/L</span>
+                      <span class="input-group-text">mmol/L</span>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Norm 100 - 120" ng-model="$ctrl.patientProfile.systolicBloodPressure">
                     <div class="input-group-append">
-                        <span class="input-group-text">mmHg</span>
+                      <span class="input-group-text">mmHg</span>
                     </div>
                   </div>
                 </div>
@@ -81,8 +81,8 @@
                 <div class="form-group">
                   <label>Blood pressure being treated with medicines</label>
                   <select class="form-control" name="" ng-model="$ctrl.patientProfile.isBPTreated">
-                      <option ng-value="0">No</option>
-                      <option ng-value="1">Yes</option>
+                    <option ng-value="0">No</option>
+                    <option ng-value="1">Yes</option>
                   </select>
                 </div>
               </div>

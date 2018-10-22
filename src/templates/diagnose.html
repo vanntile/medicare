@@ -4,51 +4,51 @@
 	</div>
 </div>
 <div class="content container">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="card">
-		<div class="card-header">
-			<h2 class="card-title">Diagnose patient</h2>
-			<button class="btn btn-primary" ng-click="$ctrl.goBack()">
-			  <span class="btn-label btn-label-left">
-				<i class="now-ui-icons arrows-1_minimal-left"></i>
-			  </span>
-			  Profile
-			</button>
-		</div>
-        <div class="card-body">
-			<div class="row">
-				<div class="col-sm-6">
-	                <div class="dropdown">
-	                    <button class="dropdown-toggle btn btn-primary"type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                        {{$ctrl.dropdownText}}
-	                    </button>
-	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	                        <a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(1)">MYG</a>
-	                        <a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(2)">CKMB1 + CKMB2</a>
-	                        <a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(3)">HFABP</a>
-	                        <a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(4)">CRP</a>
-	                        <a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(5)">cTnT</a>
-	                        <a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(6)">cTnl</a>
-	                    </div>
-	                </div>
-				</div>
-				<div class="col-sm-6">
-					<button class="btn btn-primary float-sm-right" ng-show="$ctrl.isShownTimer">
-						Time to next measurement: {{Math.floor($ctrl.countDown / 60)}}:{{$ctrl.countDown % 60 < 10 ? '0' + $ctrl.countDown % 60 : $ctrl.countDown % 60}}
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card">
+				<div class="card-header">
+					<h2 class="card-title">Diagnose patient</h2>
+					<button class="btn btn-primary" ng-click="$ctrl.goBack()">
+						<span class="btn-label btn-label-left">
+							<i class="now-ui-icons arrows-1_minimal-left"></i>
+						</span>
+						Profile
 					</button>
 				</div>
-			</div>
-			<div class="row" ng-show="$ctrl.enzyme !== 0">
-				<div class="col-sm-12" ng-repeat="enzyme in $ctrl.enzymeValues[$ctrl.enzyme]">
-                  <div class="form-group">
-                    <label>Mesurement #{{enzyme.index + 1}}</label>
-                    <input type="text" class="form-control" placeholder="Insert Value" ng-model="enzyme.value" ng-change="$ctrl.enzymeUpdated(enzyme.index)">
-                  </div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="dropdown">
+								<button class="dropdown-toggle btn btn-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									{{$ctrl.dropdownText}}
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(1)">MYG</a>
+									<a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(2)">CKMB1 + CKMB2</a>
+									<a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(3)">HFABP</a>
+									<a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(4)">CRP</a>
+									<a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(5)">cTnT</a>
+									<a class="dropdown-item" href="" ng-click="$ctrl.setEnzyme(6)">cTnl</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<button class="btn btn-primary float-sm-right" ng-show="$ctrl.isShownTimer">
+								Time to next measurement: {{Math.floor($ctrl.countDown / 60)}}:{{$ctrl.countDown % 60 < 10 ? '0' + $ctrl.countDown % 60 : $ctrl.countDown % 60}}
+							</button>
+						</div>
+					</div>
+					<div class="row" ng-show="$ctrl.enzyme !== 0">
+						<div class="col-sm-12" ng-repeat="enzyme in $ctrl.enzymeValues[$ctrl.enzyme]">
+							<div class="form-group">
+								<label>Mesurement #{{enzyme.index + 1}}</label>
+								<input type="text" class="form-control" placeholder="Insert Value" ng-model="enzyme.value" ng-change="$ctrl.enzymeUpdated(enzyme.index)">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-      </div>
-    </div>
-  </div>
+	</div>
 </div>
